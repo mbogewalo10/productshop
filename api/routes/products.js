@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 //Handling Incoming GET routes to retrieve all products
 router.get('/', (req, res, next) => {
     Product.find()
-    .select('productName price dateCreated _id request')
+    .select('productName price dateCreated _id request, quantity')
     .exec()
     .then(docs =>{
         console.log(docs);
@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
                 return {
                     productName : doc.productName,
                     price: doc.price,
+                    quantity:doc.quantity,
                     dateCreated: doc.dateCreated,
                     _id: doc._id,
                     request : {
@@ -46,6 +47,7 @@ router.post('/', (req, res, next) => {
        _id: new  mongoose.Types.ObjectId(),
        productName: req.body.productName,
        price: req.body.price,
+       quantity: req.body.quantity,
        dateCreated: req.body.dateCreated
    });
    product
@@ -83,15 +85,39 @@ router.get('/:productId', (req, res, next) => {
 });
 
 router.patch('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Product Updated'
-    });
+    const id = req.params.productId;
+    const updateOps = {};
+    for( const ops of req.body){
+        updateOps[ops.propName] = ops.value;
+    }
+
+      Product.update({_id:id}, {$set: updateOps})
+      .exec()
+      .then(result =>{
+          res.status(200).json(result)
+      })
+      .catch( err =>{
+          res.status(500).json({
+              errorMessage: err
+          })
+      })
+   
 });
 
 
 router.delete('/:productId', (req, res, next) => {
-    res.status(200).json({
-        message: 'Product deleted'
-    });
+const id = req.params.productId;
+
+Product.remove({_id:id})
+.exec()
+.then(result =>{
+    res.status(200).json(result)
+})
+.catch( err =>{
+    res.status(500).json({
+        errorMessage: err
+    })
+})
+
 });
 module.exports = router;

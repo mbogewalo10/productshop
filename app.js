@@ -8,6 +8,7 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 const dbUrl ="mongodb://127.0.0.1:27017/product-shop";
+// const dbUrl2 = "mongodb+srv://assan:"+process.env.mongo_pass+"@product-api-uust1.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(dbUrl, {useCreateIndex: true, useNewUrlParser:true, useUnifiedTopology:true});
 const db = mongoose.connection;
 
