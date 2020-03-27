@@ -10,7 +10,7 @@ const userRoutes = require('./api/routes/user')
 
 const dbUrl ="mongodb://127.0.0.1:27017/product-shop";
 // const dbUrl2 = "mongodb+srv://assan:"+process.env.mongo_pass+"@product-api-uust1.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(dbUrl, {useCreateIndex: true, useNewUrlParser:true, useUnifiedTopology:true});
+mongoose.connect( process.env.MONGODB_URI || dbUrl, {useCreateIndex: true, useNewUrlParser:true, useUnifiedTopology:true});
 const db = mongoose.connection;
 
 db.once("open", _=> {
