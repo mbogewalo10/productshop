@@ -23,7 +23,8 @@ db.on("error", err =>{
 })
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
