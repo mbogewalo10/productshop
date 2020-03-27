@@ -4,3 +4,52 @@
  margin: auto;
 }
 
+.editbtn {
+	background-color:#44c767;
+	border-radius:3px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+    padding:3.5px 17px;
+    margin:3px;
+	text-decoration:none;
+	/* text-shadow:0px 0px 0px #2f6627 */
+}
+
+.card {
+	width: 250px;
+	text-align: center;
+	font-family: arial;
+	margin-top: 20px;
+  }
+  .main-card{
+	  display: inline-flex;
+	  justify-content: space-evenly;
+	  margin: 5px;
+  }
+   .image{
+	  width: 250px;
+	  height: 150px;
+  }
+  .price {
+	color:red;
+	font-size: 20px;
+  }
+  
+  .card button {
+	outline: 0;
+	padding: 10px;
+	color: white;
+	background-color:blueviolet;
+	text-align: center;
+	cursor: pointer;
+	font-size: 18px;
+	width: 100%;
+	margin: 0px;
+  }
+  
+  .card button:hover {
+	opacity: 0.7;
+  }

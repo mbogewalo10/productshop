@@ -2,11 +2,26 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/product');
 const mongoose = require('mongoose');
+const multer = require('multer');
+const checkAuth = require('../middleware/checkAuth');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+    cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null,  new Date().toISOString().replace(/:/g, '-') +  file.originalname );
+    }
+})
+
+const upload = multer({storage: storage, limits:{
+    fileSize: 1024*1024 * 5
+}})
 
 //Handling Incoming GET routes to retrieve all products
 router.get('/', (req, res, next) => {
     Product.find()
-    .select('productName price dateCreated _id request, quantity')
+    .select('productname price dateCreated _id request quantity productimage description ')
     .exec()
     .then(docs =>{
         console.log(docs);
@@ -14,10 +29,12 @@ router.get('/', (req, res, next) => {
             count: docs.length,
             products: docs.map(doc =>{
                 return {
-                    productName : doc.productName,
+                    productname : doc.productname,
                     price: doc.price,
                     quantity:doc.quantity,
                     dateCreated: doc.dateCreated,
+                    productimage: doc.productimage,
+                    description: doc.description,
                     _id: doc._id,
                     request : {
                         type : "GET",
@@ -42,13 +59,17 @@ router.get('/', (req, res, next) => {
     
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('productimage') ,(req, res, next) => {
+    console.log(req.file);
    const product = new Product({
        _id: new  mongoose.Types.ObjectId(),
-       productName: req.body.productName,
+       productname: req.body.productname,
        price: req.body.price,
        quantity: req.body.quantity,
-       dateCreated: req.body.dateCreated
+       dateCreated: req.body.dateCreated,
+       productimage: req.file.path,
+       description: req.body.description
+
    });
    product
    .save()

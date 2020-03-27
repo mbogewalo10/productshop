@@ -9,9 +9,9 @@ import axios from 'axios';
         super(props)
     
         this.state = {
-             productName : "",
-             price: "",
-             quantity: ""
+             productname: '',
+             price: '',
+             quantity:''
 
         }
         this.handleChange = this.handleChange.bind(this);
@@ -23,11 +23,12 @@ import axios from 'axios';
         axios.get('http://localhost:3002/products/' + this.props.match.params.id)
           .then(res => {
             this.setState({
-              productName: res.data.createdProduct.products.productName,
-              price: res.data.createdProduct.products.price,
-              quantity: res.data.createdProduct.products.quantity
+              productname: res.data.product.productname,
+              price:res.data.product.price,
+              quantity:res.data.product.quantity
             });
-            console.log(res.data.createdProduct.products)
+            console.log(res)
+      
           })
           .catch((error) => {
             console.log(error);
@@ -46,22 +47,24 @@ import axios from 'axios';
         e.preventDefault()
     
         const userObject = {
-            productName : this.state.productName,
+            productname : this.state.productname,
             price: this.state.price,
             quantity: this.state.quantity
-        }
+        };
+
+        console.log(userObject)
     
-      axios.patch("http://localhost:3002/products" + this.props.match.params.id, userObject)
+      axios.put("http://localhost:3002/products/" + this.props.match.params.id, userObject)
       .then(result =>{
-        //   console.log(result)
-          console.log('Product successfully updated')
+          console.log('Product successfully updated' + result)
     
       })
       .catch(err =>{
           console.log(err)
       });
 
-    //   this.props.history.push('/product-list')
+         // Redirect to Student List 
+      this.props.history.push('/product-list')
     
     }
 
@@ -69,9 +72,9 @@ import axios from 'axios';
         return (
             <div className="form-wrapper" >
                 <Form className="form-style" onSubmit={this.handleSubmit} >
-                    <Form.Group controlId="productName" >
+                    <Form.Group controlId="productname" >
                          <Form.Label>PRODUCT NAME</Form.Label>
-                         <Form.Control type="text" name="productName" value={this.state.productName}  onChange={this.handleChange}  /> 
+                         <Form.Control type="text" name="productName" value={this.state.productname}  onChange={this.handleChange}  /> 
                     </Form.Group>
 
                     <Form.Group controlId="price" >
@@ -88,6 +91,8 @@ import axios from 'axios';
                     </Button>
 
                 </Form>  
+
+              
             </div>
         )
     }

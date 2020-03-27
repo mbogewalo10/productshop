@@ -13,7 +13,9 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import CreateProduct from "./components/create-products";
 import ProductList from "./components/product-list";
 import EditProduct from "./components/edit-products";
-import SignupLogin from "./components/signup-login";
+import Signup from "./components/Signup";
+import Login from "./components/login"
+import homeCard from "./components/home"
 
 function App() {
   return (
@@ -28,15 +30,22 @@ function App() {
 
                              <Nav  className="justify-content-end" >
                                   <Nav>
+                                    <Link to={"/"} className="nav-link"  > HOME </Link>
+                                  </Nav>
+
+                                  <Nav>
                                     <Link to={"/create-product"} className="nav-link"  > CREATE PRODUCT </Link>
                                   </Nav>
+                                  
                                   
                                   <Nav>
                                     <Link  to={"/product-list"} className="nav-link" > PRODUCT LIST</Link>
                                   </Nav>
-
                                   <Nav>
-                                    <Link  to={"/signup"} className="nav-link" >LOGIN</Link>
+                                    <Link  to={"/login"} className="nav-link" > LOGIN</Link>
+                                  </Nav>
+                                  <Nav>
+                                    <Link  to={"/signup"} className="nav-link" > SIGN UP</Link>
                                   </Nav>
                              </Nav>
                              
@@ -50,11 +59,12 @@ function App() {
                             <Col md={12} >
                                   <div className="wrapper" >
                                       <Switch>
-                                        <Route exact path="/"  component={CreateProduct} ></Route>
+                                        <Route exact path="/"  component={homeCard} ></Route>
                                         <Route  path="/create-product"  component={CreateProduct} ></Route>
                                         <Route  path="/product-list"  component={ProductList} ></Route>
-                                        <Route  path="/edit-product"  component={EditProduct} ></Route>
-                                        <Route  path="/signup"  component={SignupLogin} ></Route>
+                                        <Route  path="/edit-product/:id"  component={EditProduct} ></Route>
+                                        <Route  path="/login"  component={Login} ></Route>
+                                        <Route  path="/signup"  component={Signup} ></Route>
                                       </Switch>
                                   </div>
                             </Col>

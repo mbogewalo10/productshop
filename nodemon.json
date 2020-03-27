@@ -1,5 +1,6 @@
 {
     "env": {
-        "mongo_pass": "mboge"
+        "mongo_pass": "mboge",
+        "JWT_KEY" : "maribantang"
     }
 }

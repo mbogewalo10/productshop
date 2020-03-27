@@ -12,10 +12,11 @@ class ProductList extends Component {
   }
 
   componentDidMount(){
+    
     axios.get("http://localhost:3002/products/")
     .then(res => {
         this.setState({productCollection: res.data.createdProduct.products});
-        console.log(res.data.createdProduct.products)
+
     })
     .catch((error) =>{
         console.log(error);
@@ -33,13 +34,14 @@ class ProductList extends Component {
 
         return(
             <div className="table-wrapper" >
-                <Table>
-                    <thead>
+                <Table >
+                    <thead  >
                         <tr>
                             <td>Product ID</td>
                             <td>Product Name</td>
                             <td>Price</td>
                             <td>Quantity</td>
+                            <td>image</td>
                         </tr>
                     </thead>
                     <tbody>

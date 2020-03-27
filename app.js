@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/user')
 
 const dbUrl ="mongodb://127.0.0.1:27017/product-shop";
 // const dbUrl2 = "mongodb+srv://assan:"+process.env.mongo_pass+"@product-api-uust1.mongodb.net/test?retryWrites=true&w=majority"
@@ -20,6 +21,7 @@ db.on("error", err =>{
     console.error("Connection Error" + err);
 })
 app.use(morgan('dev'));
+app.use('/uploads',express.static('uploads'))
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
@@ -37,6 +39,7 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes);
 app.use('/orders',  orderRoutes);
+app.use('/user', userRoutes)
 
 app.use((req, res, next) => {
     const error = new Error('Not found');
