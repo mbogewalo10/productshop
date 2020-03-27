@@ -25,6 +25,7 @@ app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
 app.use(express.static(path.join(__dirname, "shop-frontend", "build", "index.html")));
 
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
