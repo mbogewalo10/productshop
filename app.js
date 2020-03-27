@@ -23,7 +23,7 @@ db.on("error", err =>{
 })
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
-app.use(express.static(path.join(__dirname, "shop-frontend", "build", "index.html")));
+app.use(express.static(path.join(__dirname, "shop-frontend", "build")));
 
 
 app.use(bodyParser.urlencoded({extended:false}));
