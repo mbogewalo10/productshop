@@ -16,11 +16,27 @@ import EditProduct from "./components/edit-products";
 import Signup from "./components/Signup";
 import Login from "./components/login"
 import homeCard from "./components/home"
+const styles = {
+  header: {
+    backgroundImage: 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeiF7nMwP-MSiNmsbbf2kDneK_bLQ8SidSRfl-Hezb5WEFlcfx)',
+    height: '100vh',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
+  },
+
+  content: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    color: 'white'
+  }
+}
 
 function App() {
   return (
      <Router>
-       <div  className="App" >
+       <div  className="App" style={styles.header} >
               <header  >
                      <Navbar bg="dark" variant="dark" >
                            <Container>
