@@ -13,7 +13,7 @@ class ProductList extends Component {
 
   componentDidMount(){
     
-    axios.get("/products/")
+    axios.get("http://localhost:3002/products/")
     .then(res => {
         this.setState({productCollection: res.data.createdProduct.products});
 

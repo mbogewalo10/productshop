@@ -13,7 +13,7 @@ import axios from 'axios'
 
 
     deleteProduct() {
-        axios.delete('/products/' + this.props.obj._id)
+        axios.delete('http://localhost:3002/products/' + this.props.obj._id)
             .then((res) => {
                 console.log('Student successfully deleted!');
             }).catch((error) => {
