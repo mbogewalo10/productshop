@@ -13,7 +13,7 @@ class ProductList extends Component {
 
   componentDidMount(){
     
-    axios.get("http://localhost:3002/products/")
+    axios.get("https://gamshop.herokuapp.com/products/")
     .then(res => {
         this.setState({productCollection: res.data.createdProduct.products});
 

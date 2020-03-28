@@ -20,7 +20,7 @@ import axios from 'axios';
 
 
     componentDidMount() {
-        axios.get('http://localhost:3002/products/' + this.props.match.params.id)
+        axios.get('https://gamshop.herokuapp.com/products/' + this.props.match.params.id)
           .then(res => {
             this.setState({
               productname: res.data.product.productname,
