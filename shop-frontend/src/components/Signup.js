@@ -29,20 +29,20 @@ import "./Stylesheets.css"
         return (
             <div className="form-wrapper" >
             <Form className="form-style" onSubmit={this.handleSubmit} >
-                <Form.Group controlId="productName" >
+                <Form.Group controlId="firstname" >
                      <Form.Label>FIRST NAME</Form.Label>
                      <Form.Control type="text" name="firstname"  placeholder="First Name" value={this.state.firstname}  onChange={this.handleChange}  /> 
                 </Form.Group>
-                <Form.Group controlId="productName" >
+                <Form.Group controlId="lastname" >
                      <Form.Label>LAST NAME</Form.Label>
                      <Form.Control type="text" name="lastname"  placeholder="Last Name" value={this.state.lastname}  onChange={this.handleChange}  /> 
                 </Form.Group>
 
-                <Form.Group controlId="price" >
+                <Form.Group controlId="email" >
                      <Form.Label>EMAIL ADDRESS</Form.Label>
                      <Form.Control type="email" name="email" placeholder="Email"  value={this.state.email} onChange={this.handleChange}   /> 
                 </Form.Group>
-                <Form.Group controlId="price" >
+                <Form.Group controlId="password" >
                      <Form.Label>PASSWORD</Form.Label>
                      <Form.Control type="password" name="password" placeholder="Password"  value={this.state.password} onChange={this.handleChange}   /> 
                 </Form.Group>

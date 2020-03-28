@@ -20,7 +20,7 @@ import "./Stylesheets.css"
                      <Form.Label>EMAIL ADDRESS</Form.Label>
                      <Form.Control type="email" name="email" placeholder="Email"  value={this.state.email} onChange={this.handleChange}   /> 
                 </Form.Group>
-                <Form.Group controlId="price" >
+                <Form.Group controlId="password" >
                      <Form.Label>PASSWORD</Form.Label>
                      <Form.Control type="password" name="password" placeholder="Password"  value={this.state.password} onChange={this.handleChange}   /> 
                 </Form.Group>
