@@ -45,7 +45,7 @@ class CreateProduct extends Component {
         formData.append("productimage", this.state.productimage);
 
       axios
-      .post("https://gamshop.herokuapp.com/products", formData)
+      .post("http://localhost:3002/products", formData)
       .then(result =>{
           console.log(result.data)
     

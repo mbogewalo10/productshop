@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config()
+
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
@@ -21,6 +23,17 @@ db.once("open", _=> {
 db.on("error", err =>{
     console.error("Connection Error" + err);
 })
+
+
+if (process.env.NODE_ENV === 'production') {           
+    app.use(express.static('shop-frontend/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'shop-frontend', 'build', 'index.html'));
+    });
+  }
+
+
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
 app.use(express.static(path.join(__dirname, "shop-frontend", "build")));
@@ -29,9 +42,9 @@ app.use(express.static(path.join(__dirname, "shop-frontend", "build")));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "shop-frontend", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "shop-frontend", "build", "index.html"));
+// });
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

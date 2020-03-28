@@ -106,23 +106,18 @@ router.get('/:productId', (req, res, next) => {
 });
 
 router.patch('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    const updateOps = {};
-    for( const ops of req.body){
-        updateOps[ops.propName] = ops.value;
-    }
-
-      Product.update({_id:id}, {$set: updateOps})
-      .exec()
-      .then(result =>{
-          res.status(200).json(result)
-      })
-      .catch( err =>{
-          res.status(500).json({
-              errorMessage: err
-          })
-      })
-   
+    
+   Product.findByIdAndUpdate(req.params.productId, req.body,{new: true},)
+   .then(result =>{
+       res.status(200).json({
+           result:result
+       })
+   })
+   .catch(err =>{
+       res.status(500).json({
+           messageError:err
+       })
+   })
 });
 
 
