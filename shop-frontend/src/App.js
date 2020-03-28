@@ -18,7 +18,7 @@ import Login from "./components/login"
 import homeCard from "./components/home"
 const styles = {
   header: {
-    backgroundImage: 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeiF7nMwP-MSiNmsbbf2kDneK_bLQ8SidSRfl-Hezb5WEFlcfx)',
+    backgroundImage: 'url(https://images.unsplash.com/photo-1532779952550-b8fc9200ed8c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80)',
     height: '100vh',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
