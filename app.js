@@ -11,7 +11,7 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/user')
 
-const dbUrl ="mongodb://127.0.0.1:27017/product-shop";
+const dbUrl ="mongodb://mboge:niamina1@ds013891.mlab.com:13891/heroku_m3x9w2cs";
 // const dbUrl2 = "mongodb+srv://assan:"+process.env.mongo_pass+"@product-api-uust1.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect( process.env.MONGODB_URI || dbUrl, {useCreateIndex: true, useNewUrlParser:true, useUnifiedTopology:true});
 const db = mongoose.connection;
@@ -25,14 +25,6 @@ db.on("error", err =>{
 })
 
 
-if (process.env.NODE_ENV === 'production') {           
-    app.use(express.static('shop-frontend/build'));
-  
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'shop-frontend', 'build', 'index.html'));
-    });
-  }
-
 
 app.use(morgan('dev'));
 app.use('/uploads',express.static('uploads'))
@@ -41,6 +33,11 @@ app.use(express.static(path.join(__dirname, "shop-frontend", "build")));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+if (process.env.NODE_ENV === 'production') {           
+    app.use(express.static('shop-frontend/build'));
+  }
+
 
 // app.get("*", (req, res) => {
 //     res.sendFile(path.join(__dirname, "shop-frontend", "build", "index.html"));
